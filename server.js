@@ -5,7 +5,6 @@ const { router } = require("./routes/routes");
 const { mongoToStart } = require("./mongo_db/mongo_db");
 require("dotenv").config();
 
-
 // init app & moddleware
 const app = express();
 
@@ -28,6 +27,11 @@ startServer()
     console.log(err);
   });
 
+app.get("/", (req, res) => {
+  res.status(200).send("Hello phone cntect project");
+});
 
 //using routers
 app.use("/phone_contects", router);
+
+module.exports = app;
