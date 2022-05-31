@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
-const uri = process.env.ATLAS_URI;
+const uri =
+  process.env.ATLAS_URI ||
+  "mongodb+srv://TzalisMongoDb:zxeDCead6tyTyFrr@mongodbcluster.vk00o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const mongoToStart = new Promise((res, reject) => {
   mongoose
     .connect(uri)
     .then((result) => console.log("connection secseded"))
-    .catch((err) =>{ console.log(err)});
+    .catch((err) => {
+      console.log(err);
+    });
   const connection = mongoose.connection;
   connection.once("open", () => {
     res(true);
